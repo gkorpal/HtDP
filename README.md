@@ -1,5 +1,5 @@
 # How to Design Programs, 2nd edition
-### Setup
+![htdp](htdp.png)
 
 Platform: Fedora Linux 36 (Workstation Edition) with GNOME Wayland
 
@@ -70,6 +70,7 @@ $ drracket
 `````
 ![drracket](drracket.png)
 
+<!-----
 ### The basic steps of a function design recipe
 1. **From Problem Analysis to Data Definitions:** Identify the information that must be represented and how it is represented in the chosen programming language. Formulate data defintions and illustrate them with examples.
 
@@ -82,3 +83,4 @@ $ drracket
 5. **Function Definition:** Fill in the gaps in the function template. Exploit the purpose statement and the examples.
 
 6. **Testing:** Articulate the examples as tests and ensure that the function passes all. Doing so discovers mistakes. Tests also supplement examples in that they help others read and understand the definitions when the need arises--and it will arise for any serious program.
+----->
