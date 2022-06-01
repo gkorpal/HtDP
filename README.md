@@ -1,6 +1,10 @@
 # How to Design Programs, 2nd edition
 ![htdp](htdp.png)
 
+This is like a modern version of *How to Solve It* by Polya:
+
+![htsi](htsi.png)
+
 Platform: Fedora Linux 36 (Workstation Edition) with GNOME Wayland
 
 Installation:
