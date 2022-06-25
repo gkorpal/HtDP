@@ -74,7 +74,7 @@ $ drracket
 `````
 ![drracket](drracket.png)
 
-For the Parts I and II we will be working with Basic Student Language (BSL).
+For the Parts I and II we will be working with Beginning Student Language (BSL).
 
 <!-----
 ### The basic steps of a function design recipe
