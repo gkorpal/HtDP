@@ -74,6 +74,8 @@ $ drracket
 `````
 ![drracket](drracket.png)
 
+For the Parts I and II we will be working with Basic Student Language (BSL).
+
 <!-----
 ### The basic steps of a function design recipe
 1. **From Problem Analysis to Data Definitions:** Identify the information that must be represented and how it is represented in the chosen programming language. Formulate data defintions and illustrate them with examples.
