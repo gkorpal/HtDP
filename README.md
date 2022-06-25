@@ -7,7 +7,7 @@ This is like a modern version of *How to Solve It* by Polya:
 
 Platform: Fedora Linux 36 (Workstation Edition) with GNOME Wayland
 
-Installation:
+Racket Installation:
 
 `````
 $ sudo ./racket-8.5-x86_64-linux-cs.sh
@@ -75,6 +75,8 @@ $ drracket
 ![drracket](drracket.png)
 
 For the Parts I and II we will be working with Beginning Student Language (BSL).
+
+For more information, I would recommend reading [Beautiful Racket](https://beautifulracket.com/) by Matthew Butterick.
 
 <!-----
 ### The basic steps of a function design recipe
