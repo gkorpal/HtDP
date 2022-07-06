@@ -2,7 +2,7 @@
 
 I read the Parts I and II of the book. It involves working with Beginning Student Language (BSL) in DrRacket.
 
-According to HtDP, programs are collections of definitions: structure type definitions, data definitions, constant definitions, and function definitions. To guide the division of labor among functions, we follow the following rough guidelines:
+According to HtDP, programs are collections of definitions: structure type definitions, data definitions, constant definitions, and function definitions. To guide the division of labor among functions, the following rough guidelines are available:
   - ([chapter 3](https://htdp.org/2022-2-9/Book/part_one.html#%28part._ch~3ahtdp%29)) Design one function per task. Formulate auxiliary function definitions for every dependency between quantities in the problem.
   - ([chapter 11](https://htdp.org/2022-2-9/Book/part_two.html#%28part._sec~3acompounding2%29)) Design one template per data definition. Formulate auxiliary function definitions when one data definition points to a second data definition.
   - ([chapter 3](https://htdp.org/2022-2-9/Book/part_one.html#%28counter._.D.K._%28figure._fig~3aworld-signatures%29%29) and [chapter 11](https://htdp.org/2022-2-9/Book/part_two.html#%28part._sec~3acompounding2%29)) Maintain a *wish list* of function headers that must be designed to complete a program. Before adding a function to the wish list, check whether something like the function already exists in the programming language’s library or whether something similar is already on the wish list.
