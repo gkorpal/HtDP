@@ -17,7 +17,8 @@ Therefore, according to the book, programs are collections of definitions: struc
  
 Writing down complete function headers ensures that you can test those portions of the programs that you have finished, which is useful even though many tests will fail. Of course, when the wish list is empty, all tests should pass and all functions should be covered by tests. 
 
-For example, consider the [implementation of insertion sort in BSL+](https://htdp.org/2022-2-9/Book/part_two.html#%28part._sec~3asort.I%29):
+For example, consider the following structurally recursive function that [implements insertion sort in BSL+](https://htdp.org/2022-2-9/Book/part_two.html#%28part._sec~3asort.I%29):
+:
 
 ````racket
 ; List-of-numbers -> List-of-numbers
@@ -77,6 +78,37 @@ struct LIST * SortList1(struct LIST * pList)
 ````
 
 Note that, in HtDP we usually work with lists, but it does have arrays/vectors like seen in C.
+
+On the other hand, quick-sort is an example of [generative recursion](https://htdp.org/2022-2-9/Book/part_five.html#%28part._sec~3aquick-sort%29). Here is its [implemention in ISL+](https://htdp.org/2022-2-9/Book/part_five.html#%28counter._%28figure._fig~3aquick-sort%29%29):
+
+````racket
+; [List-of Number] -> [List-of Number]
+; produces a sorted version of alon
+; assume the numbers are all distinct 
+(define (quick-sort< alon)
+  (cond
+    [(empty? alon) '()]
+    [else (local ((define pivot (first alon)))
+            (append (quick-sort< (smallers alon pivot))
+                    (list pivot)
+                    (quick-sort< (largers alon pivot))))]))
+ 
+; [List-of Number] Number -> [List-of Number]
+(define (largers alon n)
+  (cond
+    [(empty? alon) '()]
+    [else (if (> (first alon) n)
+              (cons (first alon) (largers (rest alon) n))
+              (largers (rest alon) n))]))
+ 
+; [List-of Number] Number -> [List-of Number]
+(define (smallers alon n)
+  (cond
+    [(empty? alon) '()]
+    [else (if (< (first alon) n)
+              (cons (first alon) (smallers (rest alon) n))
+              (smallers (rest alon) n))]))
+````
 
 For more information, I would recommend reading [Beautiful Racket](https://beautifulracket.com/) by Matthew Butterick.
 
