@@ -22,11 +22,11 @@ For example, consider the following structurally recursive function that [implem
 ````racket
 ; List-of-numbers -> List-of-numbers
 ; produces a sorted version of l
-(check-expect (sort> (list 5 2 4 6 1 3)) (list 1 2 3 4 5 6))
-(define (sort> l)
+(check-expect (sort< (list 5 2 4 6 1 3)) (list 1 2 3 4 5 6))
+(define (sort< l)
   (cond
     [(empty? l) '()]
-    [(cons? l) (insert (first l) (sort> (rest l)))]))
+    [(cons? l) (insert (first l) (sort< (rest l)))]))
  
 ; Number List-of-numbers -> List-of-numbers
 ; inserts n into the sorted list of numbers l
@@ -78,12 +78,14 @@ struct LIST * SortList1(struct LIST * pList)
 
 Note that, in HtDP we usually work with lists, but it does have arrays/vectors like seen in C.
 
-On the other hand, quick-sort is an example of [generative recursion](https://htdp.org/2022-2-9/Book/part_five.html#%28part._sec~3aquick-sort%29). Here is its [implemention in ISL+](https://htdp.org/2022-2-9/Book/part_five.html#%28counter._%28figure._fig~3aquick-sort%29%29):
+On the other hand, quick-sort is an example of [generative recursion](https://htdp.org/2022-2-9/Book/part_five.html#%28part._sec~3aquick-sort%29), based on divide-and-conquer instead of "Design by Composition." Here is its [implemention in ISL+](https://htdp.org/2022-2-9/Book/part_five.html#%28counter._%28figure._fig~3aquick-sort%29%29):
 
 ````racket
 ; [List-of Number] -> [List-of Number]
 ; produces a sorted version of alon
 ; assume the numbers are all distinct 
+; combines the two sorted lists and the pivot in the proper order
+; first all those items smaller than pivot, then pivot, and finally all those that are larger. 
 (define (quick-sort< alon)
   (cond
     [(empty? alon) '()]
@@ -93,6 +95,7 @@ On the other hand, quick-sort is an example of [generative recursion](https://ht
                     (quick-sort< (largers alon pivot))))]))
  
 ; [List-of Number] Number -> [List-of Number]
+; the list of items larger than the pivot
 (define (largers alon n)
   (cond
     [(empty? alon) '()]
@@ -101,6 +104,7 @@ On the other hand, quick-sort is an example of [generative recursion](https://ht
               (largers (rest alon) n))]))
  
 ; [List-of Number] Number -> [List-of Number]
+; the list of items smaller than the pivot
 (define (smallers alon n)
   (cond
     [(empty? alon) '()]
@@ -108,6 +112,8 @@ On the other hand, quick-sort is an example of [generative recursion](https://ht
               (cons (first alon) (smallers (rest alon) n))
               (smallers (rest alon) n))]))
 ````
+
+Note that this implementation is for a list instead of an array, hence is based on the very early versions of quicksort in which the leftmost element of the partition is chosen as the pivot element. Unfortunately, [this causes worst-case behavior on already sorted arrays](https://en.wikipedia.org/wiki/Quicksort#Choice_of_pivot), which is a rather common use-case.
 
 For more information, I would recommend reading [Beautiful Racket](https://beautifulracket.com/) by Matthew Butterick.
 
