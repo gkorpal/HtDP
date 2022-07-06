@@ -10,6 +10,65 @@ The programs are collections of definitions: structure type definitions, data de
  
 Writing down complete function headers ensures that you can test those portions of the programs that you have finished, which is useful even though many tests will fail. Of course, when the wish list is empty, all tests should pass and all functions should be covered by tests. 
 
+For example, consider the [implementation of insertion sort in BSL+](https://htdp.org/2022-2-9/Book/part_two.html#%28part._sec~3asort.I%29):
+
+````racket
+; List-of-numbers -> List-of-numbers
+; produces a sorted version of l
+(check-expect (sort> (list 5 2 4 6 1 3)) (list 1 2 3 4 5 6))
+(define (sort> l)
+  (cond
+    [(empty? l) '()]
+    [(cons? l) (insert (first l) (sort> (rest l)))]))
+ 
+; Number List-of-numbers -> List-of-numbers
+; inserts n into the sorted list of numbers l
+(check-expect (insert 4 (list 1 3 6)) (list 1 3 4 6))
+(define (insert n l)
+  (cond
+    [(empty? l) (cons n '())]
+    [else (if (<= n (first l))
+              (cons n l)
+              (cons (first l) (insert n (rest l))))]))
+ ````
+
+This is a [pure recursive form](http://www.cs.ecu.edu/karl/2530/fall19/Notes/lec43A.html) (functional/declarative programming) of the [usual iterative form](https://en.wikipedia.org/wiki/Insertion_sort#List_insertion_sort_code_in_C) (procedural/imperative programming), we see in C:
+````C
+struct LIST * SortList1(struct LIST * pList) 
+{
+    // zero or one element in list
+    if (pList == NULL || pList->pNext == NULL)
+        return pList;
+    // head is the first element of resulting sorted list
+    struct LIST * head = NULL;
+    while (pList != NULL) {
+        struct LIST * current = pList;
+        pList = pList->pNext;
+        if (head == NULL || current->iValue < head->iValue) {
+            // insert into the head of the sorted list
+            // or as the first element into an empty sorted list
+            current->pNext = head;
+            head = current;
+        } else {
+            // insert current element into proper position in non-empty sorted list
+            struct LIST * p = head;
+            while (p != NULL) {
+                if (p->pNext == NULL || // last element of the sorted list
+                    current->iValue < p->pNext->iValue) // middle of the list
+                {
+                    // insert into middle of the sorted list or as the last element
+                    current->pNext = p->pNext;
+                    p->pNext = current;
+                    break; // done
+                }
+                p = p->pNext;
+            }
+        }
+    }
+    return head;
+}
+````
+
 ![htdp](htdp.png)
 ![htdp2](htdp2.png)
 
