@@ -18,7 +18,6 @@ Therefore, according to the book, programs are collections of definitions: struc
 Writing down complete function headers ensures that you can test those portions of the programs that you have finished, which is useful even though many tests will fail. Of course, when the wish list is empty, all tests should pass and all functions should be covered by tests. 
 
 For example, consider the following structurally recursive function that [implements insertion sort in BSL+](https://htdp.org/2022-2-9/Book/part_two.html#%28part._sec~3asort.I%29):
-:
 
 ````racket
 ; List-of-numbers -> List-of-numbers
